@@ -1,0 +1,53 @@
+Function Main()
+	turn off terminal processing
+	Create Pipes 1, 2, and 3
+	
+	Fork processes
+	set child process to Output
+	
+	Fork processes
+	set child process to Translate
+	set parent process to Input
+End Function
+
+Function Input(write pipe 1, write pipe 2)
+	
+	loop while not exit
+		Get input from user
+		
+		check for special commands
+		if command is end of line
+			send buffer to Translate
+		else
+			stick input character in buffer
+		
+		write character to Output process
+		
+	End loop
+	
+End function
+
+function Translate(read pipe 1, write pipe 2)
+	loop while not exit
+		Read data from Input buffer
+		process data for line kills, backspaces, and translation characters
+		
+		send translated data to output
+	end loop
+end function
+
+function Output(read pipe 1, read pipe 2)
+	loop while not exit
+	
+		try to read data from input
+		if read from input
+			print character
+		
+		try to read data from translate
+		if read from translate
+			print translate data string
+	
+	end loop
+
+end function
+	
